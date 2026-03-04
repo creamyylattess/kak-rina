@@ -59,22 +59,23 @@ img{
   min-height: 40px;
 }
 @keyframes blink{50%{border-color:transparent}}
-
-/* --- CAKE DESIGN (SIMPLE) --- */
+  
 .cake-box{
-  position:relative;
   width:150px;
   margin:auto;
 }
+
 .cake-body{
+  position:relative; /* INI KUNCINYA */
   width:150px;
   height:90px;
   background:#693b3b;
   border-radius:0 0 24px 24px;
 }
+
 .candle{
   position:absolute;
-  top:-35px;
+  top:-35px;      /* sekarang bener: dari atas cake */
   left:50%;
   transform:translateX(-50%);
   width:12px;
