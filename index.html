@@ -83,16 +83,24 @@ img{
   background:white;
   border-radius:6px;
 }
-#flame{
-  position:absolute;
-  top:-18px;
-  left:50%;
-  transform:translateX(-50%);
-  width:16px;
-  height:16px;
-  background:orange;
-  border-radius:50%;
-  animation:flicker .7s infinite;
+.flame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 22px;
+  background: radial-gradient(ellipse at bottom, #ffeb3b 0%, #ff9800 60%, #ff5722 100%);
+  border-radius: 50% 50% 20% 20%;
+  box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+  animation: flicker 0.5s infinite alternate;
+  transform-origin: bottom center;
+  z-index: 4;
+}
+
+/* Animasi Api Mati */
+.flame.out {
+  animation: extinguish 0.5s forwards;
 }
 @keyframes flicker{
   0%{transform:translateX(-50%) scale(1)}
