@@ -52,11 +52,11 @@ button{
 
 .candle{
   position:absolute;
-  top:-35px;
+  top:-35px; /* Posisi lilin di atas kue */
   left:50%;
   transform:translateX(-50%);
   width:12px;
-  height:35px;
+  height:35px; /* Tinggi lilin */
   background:repeating-linear-gradient(
     45deg,
     #fff,
@@ -69,7 +69,8 @@ button{
 
 .flame{
   position:absolute;
-  top:-22px;
+  /* PERBAIKAN: top diubah ke -25px agar api berada tepat di atas lilin */
+  top:-25px; 
   left:50%;
   transform:translateX(-50%);
   width:14px;
@@ -77,6 +78,7 @@ button{
   background:radial-gradient(circle at bottom,#ffeb3b,#ff9800,#ff5722);
   border-radius:50% 50% 20% 20%;
   animation:flicker .5s infinite alternate;
+  z-index: 10; /* Pastikan api di atas lilin */
 }
 
 @keyframes flicker{
