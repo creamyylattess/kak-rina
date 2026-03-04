@@ -60,59 +60,18 @@ img{
 }
 @keyframes blink{50%{border-color:transparent}}
 
-/* --- CAKE DESIGN (FIXED) --- */
-.cake-container {
-  position: relative;
-  width: 200px;
-  height: 160px;
-  margin: 0 auto 30px auto;
+/* --- CAKE DESIGN (SIMPLE) --- */
+.cake-box{
+  position:relative;
+  width:150px;
+  margin:auto;
 }
-
-/* Badan Kue */
-.cake-body {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 160px;
-  height: 90px;
-  background: #5d4037; /* Warna coklat kue */
-  border-radius: 10px 10px 20px 20px;
-  box-shadow: inset 0 -10px 0 rgba(0,0,0,0.2);
-  z-index: 1;
+.cake-body{
+  width:150px;
+  height:90px;
+  background:#693b3b;
+  border-radius:0 0 24px 24px;
 }
-
-/* Lapisan Kue (Efek 3D) */
-.cake-body::before {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background: #e3d7cf; /* Warna krim */
-  border-radius: 10px 10px 0 0;
-  box-shadow: 0 5px 0 #d7ccc8;
-}
-
-/* Krim Menetes */
-.cake-body::after {
-  content: '';
-  position: absolute;
-  top: -15px;
-  left: 10px;
-  width: 140px;
-  height: 30px;
-  background: #e3d7cf;
-  border-radius: 10px;
-  box-shadow: 
-    10px 15px 0 #e3d7cf,
-    10px 15px 0 #e3d7cf,
-    10px 15px 0 #e3d7cf,
-  z-index: 2;
-}
-
-/* Lilin */
 .candle{
   position:absolute;
   top:-35px;
@@ -120,59 +79,30 @@ img{
   transform:translateX(-50%);
   width:12px;
   height:35px;
-  background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff6f91 4px, #ff6f91 8px);
-  border-radius: 4px;
-  z-index: 3;
+  background:white;
+  border-radius:6px;
 }
-
-/* Api Lilin */
-.flame {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 22px;
-  background: radial-gradient(ellipse at bottom, #ffeb3b 0%, #ff9800 60%, #ff5722 100%);
-  border-radius: 50% 50% 20% 20%;
-  box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
-  animation: flicker 0.5s infinite alternate;
-  transform-origin: bottom center;
-  z-index: 4;
+#flame{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:16px;
+  height:16px;
+  background:orange;
+  border-radius:50%;
+  animation:flicker .7s infinite;
 }
-
-/* Animasi Api Mati */
-.flame.out {
-  animation: extinguish 0.5s forwards;
+@keyframes flicker{
+  0%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.3)}
+  100%{transform:translateX(-50%) scale(1)}
 }
-
-@keyframes flicker {
-  0% { transform: translateX(-50%) scale(1); opacity: 1; }
-  100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+.fade{
+  animation:bye .8s forwards;
 }
-
-@keyframes extinguish {
-  0% { transform: translateX(-50%) scale(1); opacity: 1; }
-  50% { transform: translateX(-50%) scale(1.5) rotate(10deg); opacity: 0.5; }
-  100% { transform: translateX(-50%) scale(0); opacity: 0; }
-}
-
-/* Hiasan Kue */
-.sprinkles {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 140px;
-  height: 10px;
-  background: transparent;
-  z-index: 3;
-}
-.sprinkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+@keyframes bye{
+  to{opacity:0; transform:translateX(-50%) scale(0)}
 }
 
 /* --- CARD & GIFT --- */
@@ -224,21 +154,11 @@ img{
 <!-- STEP 3 -->
 <div class="center hidden" id="step3">
   <div>
-    <div class="cake-container">
+    <div class="cake-box">
       <div class="candle">
-        <div id="flame" class="flame"></div>
+        <div id="flame"></div>
       </div>
       <div class="cake-body"></div>
-      <!-- Hiasan kecil di atas kue -->
-      <div class="sprinkles">
-        <div class="sprinkle" style="top:0; left:10px; background:#ffeb3b"></div>
-        <div class="sprinkle" style="top:0; left:30px; background:#ff9800"></div>
-        <div class="sprinkle" style="top:0; left:50px; background:#f44336"></div>
-        <div class="sprinkle" style="top:0; left:70px; background:#2196f3"></div>
-        <div class="sprinkle" style="top:0; left:90px; background:#4caf50"></div>
-        <div class="sprinkle" style="top:0; left:110px; background:#9c27b0"></div>
-        <div class="sprinkle" style="top:0; left:130px; background:#ffeb3b"></div>
-      </div>
     </div>
     <br>
     <button id="btn-blow" onclick="blow()">tiup lilin 💨</button>
@@ -324,17 +244,17 @@ function blow(){
   const btn = document.getElementById("btn-blow");
 
   // Mencegah klik ganda
-  if(flame.classList.contains("out")) return;
+  if(flame.classList.contains("fade")) return;
 
   // Matikan api
-  flame.classList.add("out");
+  flame.classList.add("fade");
   
   // Ubah tombol
   btn.innerHTML = "Selesai ✨";
   btn.disabled = true;
 
   // Lanjut halaman setelah animasi
-  setTimeout(()=>go(4), 1000);
+  setTimeout(()=>go(4), 800);
 }
 </script>
 
