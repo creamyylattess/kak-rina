@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Kak Rinaa 🎂</title>
+<title>Happy Birthday 🎂</title>
 
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Poppins,system-ui;
+  font-family:system-ui;
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
   color:#fff;
   height:100vh;
-  overflow: hidden;
 }
 
 .center{
@@ -22,7 +21,6 @@ body{
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:20px;
 }
 
 .hidden{display:none}
@@ -35,238 +33,96 @@ button{
   background:#fff;
   color:#ff6f91;
   font-weight:600;
-  cursor: pointer;
-  transition: transform 0.2s, opacity 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-button:active{transform: scale(0.95)}
-button:disabled{opacity: 0.5; cursor: not-allowed}
-
-img{
-  max-width:100%;
-  border-radius:16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  cursor:pointer;
 }
 
-/* typing */
-.typing{
-  font-size:28px;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
-  border-right:3px solid #fff;
-  animation:blink .8s infinite;
-  min-height: 40px;
-}
-@keyframes blink{50%{border-color:transparent}}
-  
+/* ===== CAKE ===== */
 .cake-box{
   width:150px;
   margin:auto;
 }
 
 .cake-body{
-  position:relative; /* INI KUNCINYA */
+  position:relative;
   width:150px;
   height:90px;
   background:#693b3b;
   border-radius:0 0 24px 24px;
-  overflow: visible;
 }
 
 .candle{
   position:absolute;
-  top:-35px;      /* sekarang bener: dari atas cake */
+  top:-35px;
   left:50%;
   transform:translateX(-50%);
   width:12px;
   height:35px;
-  background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff6f91 4px, #ff6f91 8px);
-  border-radius: 6px;
-  z-index: 3;
-}
-.flame {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 22px;
-  background: radial-gradient(ellipse at bottom, #ffeb3b 0%, #ff9800 60%, #ff5722 100%);
-  border-radius: 50% 50% 20% 20%;
-  box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
-  animation: flicker 0.5s infinite alternate;
-  transform-origin: bottom center;
-  z-index: 4;
+  background:repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 4px,
+    #ff6f91 4px,
+    #ff6f91 8px
+  );
+  border-radius:6px;
 }
 
-/* Animasi Api Mati */
-.flame.out {
-  animation: extinguish 0.5s forwards;
+.flame{
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:14px;
+  height:22px;
+  background:radial-gradient(circle at bottom,#ffeb3b,#ff9800,#ff5722);
+  border-radius:50% 50% 20% 20%;
+  animation:flicker .5s infinite alternate;
 }
+
 @keyframes flicker{
-  0%{transform:translateX(-50%) scale(1)}
-  50%{transform:translateX(-50%) scale(1.3)}
-  100%{transform:translateX(-50%) scale(1)}
+  from{transform:translateX(-50%) scale(1)}
+  to{transform:translateX(-50%) scale(1.3)}
 }
+
 .fade{
-  animation:bye .8s forwards;
+  animation:out .6s forwards;
 }
-@keyframes bye{
+@keyframes out{
   to{opacity:0; transform:translateX(-50%) scale(0)}
-}
-
-/* --- CARD & GIFT --- */
-.card{
-  background:rgba(255,255,255,.2);
-  backdrop-filter:blur(10px);
-  padding:30px;
-  border-radius:24px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.gift{
-  font-size:100px;
-  animation: shake 1.5s infinite;
-  cursor: pointer;
-  display: inline-block;
-}
-@keyframes shake{
-  0%,100%{transform:rotate(0)}
-  25%{transform:rotate(5deg)}
-  75%{transform:rotate(-5deg)}
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUDIO -->
-<audio id="song" src="lagu.mp3" loop></audio>
-
-<!-- STEP 1 -->
 <div class="center" id="step1">
   <button onclick="go(2)">tap mee 💌</button>
 </div>
 
-<!-- STEP 2 -->
 <div class="center hidden" id="step2">
   <div>
-    <div id="typing" class="typing"></div>
-    <br><br>
-    <img src="WA_1772581835379.jpeg" alt="Foto Rinaa">
-    <p style="font-size:20px; margin-top:15px;">💓 بارك الله فى امرك</p>
-    <br>
-    <button onclick="go(3)">next 👉🏻</button>
-  </div>
-</div>
-
-<!-- STEP 3 -->
-<div class="center hidden" id="step3">
-  <div>
     <div class="cake-box">
-  <div class="cake-body">
-    <div class="candle">
-      <div class="flame" id="flame"></div>
-    </div>
-  </div>
+      <div class="cake-body">
+        <div class="candle">
+          <div class="flame" id="flame"></div>
+        </div>
+      </div>
     </div>
     <br>
-    <button id="btn-blow" onclick="blow()">tiup lilin 💨</button>
-  </div>
-</div>
-
-<!-- STEP 4 -->
-<div class="center hidden" id="step4">
-  <div>
-    <h1>26 🎉</h1>
-    <p>04 March 2000</p>
-    <button onclick="go(5)">lanjut 👉</button>
-  </div>
-</div>
-
-<!-- STEP 5 -->
-<div class="center hidden" id="step5">
-  <div>
-    <p>click the gift 🎁</p>
-    <div class="gift" onclick="go(6)">🎁</div>
-  </div>
-</div>
-
-<!-- STEP 6 -->
-<div class="center hidden" id="step6">
-  <div class="card">
-    <h2>💌</h2>
-    <p>
-      happy birthday to youu 🤍<br>
-      semoga sehat, bahagia, cepat kaya.<br>
-      nanti raya thr ke dekti yang banyak yerr 😚🫰🏻
-    </p>
+    <button id="btn" onclick="blow()">tiup lilin 💨</button>
   </div>
 </div>
 
 <script>
-// Variabel global untuk menyimpan interval typing
-let typingInterval = null;
-
 function go(n){
-  // 1. Hapus semua animasi typing jika pindah halaman
-  if(typingInterval) clearInterval(typingInterval);
-
-  document.querySelectorAll('.center').forEach(e=>e.classList.add('hidden'));
+  document.querySelectorAll('.center')
+    .forEach(e=>e.classList.add('hidden'));
   document.getElementById('step'+n).classList.remove('hidden');
-
-  if(n===2){
-    // 2. Coba putar lagu
-    const song = document.getElementById('song');
-    if(song) {
-        song.play().then(() => {
-            console.log("Music playing");
-        }).catch(error => {
-            console.log("Audio play failed (check file path):", error);
-            alert("Pastikan file 'lagu.mp3' ada di folder yang sama!");
-        });
-    }
-    typeText("Happy birthdayy 🎉");
-  }
-}
-
-function typeText(text){
-  let i=0;
-  let el=document.getElementById("typing");
-  
-  if(!el) return;
-
-  el.innerHTML="";
-  
-  if(typingInterval) clearInterval(typingInterval);
-
-  typingInterval = setInterval(()=>{
-    if(!el) { clearInterval(typingInterval); return; }
-    
-    el.innerHTML+=text[i];
-    i++;
-    if(i>=text.length) clearInterval(typingInterval);
-  },120);
 }
 
 function blow(){
-  const flame = document.getElementById("flame");
-  const btn = document.getElementById("btn-blow");
-
-  // Mencegah klik ganda
-  if(flame.classList.contains("fade")) return;
-
-  // Matikan api
-  flame.classList.add("fade");
-  
-  // Ubah tombol
-  btn.innerHTML = "Selesai ✨";
-  btn.disabled = true;
-
-  // Lanjut halaman setelah animasi
-  setTimeout(()=>go(4), 800);
+  document.getElementById('flame').classList.add('fade');
+  document.getElementById('btn').disabled=true;
 }
 </script>
 
